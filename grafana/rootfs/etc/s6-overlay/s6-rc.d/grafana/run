@@ -1,0 +1,35 @@
+#!/command/with-contenv bashio
+# shellcheck shell=bash
+# ==============================================================================
+# Home Assistant App: Grafana with VictoriaMetrics datasource
+# Runs the Grafana server
+# ==============================================================================
+declare -a options
+declare unsigned_plugins
+declare name
+declare value
+
+bashio::net.wait_for 11211
+bashio::log.info 'Starting Grafana...'
+
+options+=(--config="/etc/grafana/grafana.ini")
+options+=(--homepath="/usr/share/grafana")
+
+for var in $(bashio::config 'env_vars|keys'); do
+    name=$(bashio::config "env_vars[${var}].name")
+    value=$(bashio::config "env_vars[${var}].value")
+    bashio::log.info "Setting ${name}"
+    export "${name}=${value}"
+done
+
+if bashio::config.has_value 'custom_plugins'; then
+    for plugin in $(bashio::config 'custom_plugins|keys'); do
+        name=$(bashio::config "custom_plugins[${plugin}].name")
+        if bashio::config.true "custom_plugins[${plugin}].unsigned"; then
+            unsigned_plugins+="${name},"
+        fi
+    done
+    export "GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS=${unsigned_plugins%,}"
+fi
+
+exec grafana server "${options[@]}"

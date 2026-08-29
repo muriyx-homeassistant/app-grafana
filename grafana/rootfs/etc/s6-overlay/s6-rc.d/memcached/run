@@ -1,0 +1,12 @@
+#!/command/with-contenv bashio
+# shellcheck shell=bash
+# ==============================================================================
+# Home Assistant App: Grafana with VictoriaMetrics datasource
+# Runs Memcached
+# ==============================================================================
+declare -a options
+
+bashio::log.info 'Starting Memcached...'
+options+=(-l 127.0.0.1)
+options+=(-m 32)
+exec s6-setuidgid memcache /usr/bin/memcached "${options[@]}"

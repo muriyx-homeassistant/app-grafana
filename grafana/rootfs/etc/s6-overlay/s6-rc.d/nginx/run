@@ -1,0 +1,9 @@
+#!/command/with-contenv bashio
+# shellcheck shell=bash
+# ==============================================================================
+# Home Assistant App: Grafana with VictoriaMetrics datasource
+# Runs NGINX
+# ==============================================================================
+bashio::net.wait_for 3000
+bashio::log.info "Starting NGINX..."
+exec nginx
