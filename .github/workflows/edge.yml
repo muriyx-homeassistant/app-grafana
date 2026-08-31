@@ -152,7 +152,7 @@ jobs:
         run: |
           if [[ -z "${CATALOG_TOKEN}" ]]; then
             echo "::warning::CATALOG_TOKEN is not configured; edge catalog update skipped"
-            exit 0
+            exit 1
           fi
 
           owner="${GITHUB_REPOSITORY_OWNER,,}"
