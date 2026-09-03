@@ -14,9 +14,9 @@
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": [
-        "/Dockerfile$",
-        "/build.yaml$"
+      "managerFilePatterns": [
+        "//Dockerfile$/",
+        "//build.yaml$/"
       ],
       "matchStringsStrategy": "any",
       "matchStrings": [
@@ -27,8 +27,8 @@
     },
     {
       "customType": "regex",
-      "fileMatch": [
-        "/Dockerfile$"
+      "managerFilePatterns": [
+        "//Dockerfile$/"
       ],
       "matchStringsStrategy": "any",
       "matchStrings": [
@@ -40,8 +40,8 @@
     },
     {
       "customType": "regex",
-      "fileMatch": [
-        "/Dockerfile$"
+      "managerFilePatterns": [
+        "//Dockerfile$/"
       ],
       "matchStrings": [
         "ARG GRAFANA_VERSION=[\"']?(?<currentValue>.+?)[\"']?\\s+"
@@ -51,8 +51,8 @@
     },
     {
       "customType": "regex",
-      "fileMatch": [
-        "/Dockerfile$"
+      "managerFilePatterns": [
+        "//Dockerfile$/"
       ],
       "matchStrings": [
         "ARG VICTORIAMETRICS_DATASOURCE_VERSION=[\"']?(?<currentValue>.+?)[\"']?\\s+"
