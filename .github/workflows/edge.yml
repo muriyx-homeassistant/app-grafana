@@ -21,7 +21,7 @@ jobs:
       version: ${{ steps.version.outputs.value }}
     steps:
       - name: Checkout build configuration
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
       - id: matrix
         shell: bash
@@ -42,7 +42,7 @@ jobs:
       matrix: ${{ fromJSON(needs.metadata.outputs.matrix) }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -92,7 +92,7 @@ jobs:
       matrix: ${{ fromJSON(needs.metadata.outputs.matrix) }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
