@@ -17,7 +17,7 @@ RUN ARCH="${BUILD_ARCH}" \
     && apt-get install -y --no-install-recommends \
         libfontconfig1=2.15.0-2.3 \
         memcached=1.6.38-1 \
-        nginx=1.26.3-3+deb13u7 \
+        nginx=1.26.3-3+deb13u9 \
     && dpkg --install --force-depends /tmp/grafana.deb \
     && grafana cli --homepath /usr/share/grafana plugins install \
         victoriametrics-metrics-datasource \
