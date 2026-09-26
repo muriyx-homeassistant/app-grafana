@@ -1,6 +1,7 @@
 MIT License
 
 Copyright (c) 2018-2026 Franck Nijhof and contributors
+
 Copyright (c) 2026 muriyx
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
