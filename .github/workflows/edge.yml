@@ -114,7 +114,7 @@ jobs:
           ARCH: ${{ matrix.arch }}
         run: |
           owner="${GITHUB_REPOSITORY_OWNER,,}"
-          echo "name=ghcr.io/${owner}/grafana/${ARCH}" >> "$GITHUB_OUTPUT"
+          echo "name=ghcr.io/${owner}/app-grafana/${ARCH}" >> "$GITHUB_OUTPUT"
           echo "date=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> "$GITHUB_OUTPUT"
 
       - name: Build image
@@ -165,4 +165,4 @@ jobs:
             -F client_payload[source_path]='grafana' \
             -F client_payload[slug]='grafana' \
             -F client_payload[version]="${VERSION}" \
-            -F client_payload[image]="ghcr.io/${owner}/grafana/{arch}"
+            -F client_payload[image]="ghcr.io/${owner}/app-grafana/{arch}"
