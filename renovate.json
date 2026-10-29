@@ -40,6 +40,19 @@
     },
     {
       "customType": "regex",
+      "description": "Track upstream APT package versions while preserving the Debian revision wildcard.",
+      "managerFilePatterns": [
+        "//Dockerfile$/"
+      ],
+      "matchStrings": [
+        "\\s+[\"']?(?<depName>[a-z0-9][a-z0-9.+-]+)=(?<currentValue>[0-9]+(?:\\.[0-9]+)+)-\\*[\"']?\\s+"
+      ],
+      "versioningTemplate": "deb",
+      "datasourceTemplate": "deb",
+      "extractVersionTemplate": "^(?<version>[0-9]+(?:\\.[0-9]+)+)-.+$"
+    },
+    {
+      "customType": "regex",
       "managerFilePatterns": [
         "//Dockerfile$/"
       ],
@@ -62,6 +75,17 @@
     }
   ],
   "packageRules": [
+    {
+      "description": "Handle APT revision wildcards with the custom regex manager instead of the Dockerfile manager.",
+      "matchManagers": [
+        "dockerfile"
+      ],
+      "matchDatasources": [
+        "deb"
+      ],
+      "matchCurrentValue": "/-\\*$/",
+      "enabled": false
+    },
     {
       "matchDatasources": [
         "deb"
